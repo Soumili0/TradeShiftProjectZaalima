@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 
-function Login() {
-  const [username, setUsername] = useState("");
+function Login({ onLoginSuccess, onSwitchToRegister }) {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem("users")) || [];
+
     const user = users.find(
-      (u) => u.username === username && u.password === password
+      (u) => u.email === email.trim() && u.password === password
     );
 
     if (user) {
-      alert("Login Successful 🎉");
+      alert(`Welcome ${user.firstName}! Login Successful 🎉`);
+      setEmail("");
+      setPassword("");
+      onLoginSuccess(); // dashboard দেখানোর জন্য
     } else {
-      alert("Invalid username or password ❌");
+      alert("Invalid email or password ❌");
     }
   };
 
@@ -23,10 +27,10 @@ function Login() {
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input
-          type="text"
-          placeholder="Enter Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
@@ -35,9 +39,21 @@ function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          style={{ marginTop: "10px" }}
         />
-        <button type="submit">Login</button>
+        <button type="submit" style={{ marginTop: "20px" }}>
+          Login
+        </button>
       </form>
+      <p style={{ marginTop: "10px" }}>
+        Don’t have an account?{" "}
+        <span
+          style={{ color: "blue", cursor: "pointer", textDecoration: "underline" }}
+          onClick={onSwitchToRegister}
+        >
+          Please register first
+        </span>
+      </p>
     </div>
   );
 }
