@@ -15,7 +15,7 @@ import com.miliproject.springboot.*;
 	import jakarta.servlet.http.HttpSession;
 
 	@Service
-	public class UserSerrviceImpl implements UserService {
+	public abstract class UserSerrviceImpl implements UserService {
 
 		@Autowired
 		private UserRepo userRepo;
@@ -44,4 +44,3 @@ import com.miliproject.springboot.*;
 		}
 
 	}
-

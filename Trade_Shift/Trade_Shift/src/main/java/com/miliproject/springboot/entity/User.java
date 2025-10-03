@@ -1,5 +1,10 @@
 package com.miliproject.springboot.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 @Entity
 public class User {
 
@@ -68,6 +73,11 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", mobileNo=" + mobileNo + ", password=" + password + "]";
+	}
+
+	public void setId(long l) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -11,5 +11,6 @@ package com.miliproject.springboot.service;
 
 		public void removeSessionMessage();
 
+		public boolean hasEnoughBalance(User user, double d);
+
 	}
-}
